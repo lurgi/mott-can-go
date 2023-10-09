@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## MOTT CAN GO!
 
-## Getting Started
+모트도 갈 수 있는 Pet Friendly Place를 소개해주는 맵을 만들어 봅시다!
 
-First, run the development server:
+### (사용자) 페이지의 기능은 어떤게 있을까요?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. 기본적으로 본인 위치 주변의 플레이스를 지도에 띄웁니다.
+2. 필터를 통해 원하는 플레이스를 띄웁니다.
+   1. 테라스 온리 여부
+   2. 주차여부
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### (개발자) 데이터는 어떻게 할껀가요?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. 플레이스
+   1. ID, 이름, 좌표, 플레이스의 성격(식당, 카페), 테라스온리 여부, 주차, 좋아요 수
+   2. 정적 데이터를 내가 만들어서, 그 부분을 업로드
+      => Planet Scale사용해서 다 넣는 것이 좋을 듯. (관계형 DB를 위해서.)
+   3. (추가) 동적 데이터로 사용자가 직접 플레이스를 등록한다.
+2. (추가) 사용자
+   1. ID, EAMIL, PASSWORD, 이름, 좋아요한 플레이스
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### (개발자) 개발 설계를 해봅시다.
 
-## Learn More
+api
 
-To learn more about Next.js, take a look at the following resources:
+1. 플레이스
+   1. 현재위치를 기준으로 맵에 있는 플레이스 가져오기.
+   2. filter값을 받아서 플레이스 가져오기.
+2. 유저
+   1. 유저 가입
+   2. 유저 정보 수정
+   3. 플레이스 좋아요 누르기
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. 메인 페이지
+   1. 헤더
+      로그아웃시 : 가입, 로그인
+      로그인시 : 사용자 드랍다운 메뉴 (정보수정)
+   2. 컨테이너
+      맵, 필터버튼
+      카카오맵 사용해보자!
+   3. 푸터
 
-## Deploy on Vercel
+### (개발자) 어떤걸 신경 쓰면서 만들어야 할까?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. 모바일 화면을 완벽하게 만들것!!!! 사용자는 모바일을 사용한다!
