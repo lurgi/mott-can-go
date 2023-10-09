@@ -1,3 +1,9 @@
+import KakaoMap from "@/components/Kakao-map";
+
 export default function Home() {
-  return <div>mainPage</div>;
+  return (
+    <div>
+      <KakaoMap />
+    </div>
+  );
 }
