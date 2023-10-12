@@ -1,9 +1,21 @@
-import Header from "@/components/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_KR, Roboto } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { cn } from "@/lib/utils";
+import Header from "@/components/Header";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
+});
+
+const noto_sans_kr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-noto_sans_kr",
+});
 
 export const metadata: Metadata = {
   title: "Mott can go!",
@@ -17,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kr">
-      <body className={inter.className}>
+      <body className={`${roboto.variable} ${noto_sans_kr.variable}`}>
         <Header />
         {children}
       </body>

@@ -1,9 +1,11 @@
-import KakaoMap from "@/components/Kakao-map";
+import NaverMap from "@/components/Naver-map";
+import SideBar from "@/components/Sidebar";
 
 export default function Home() {
   return (
-    <div>
-      <KakaoMap />
+    <div className="flex">
+      <SideBar />
+      <NaverMap />
     </div>
   );
 }

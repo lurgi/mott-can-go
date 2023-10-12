@@ -1,11 +1,9 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NEXT_PUBLIC_KAKAO_MAP_API: string | undefined;
+      NEXT_PUBLIC_NAVER_CLIENT_ID: string | undefined;
+      NEXT_PUBLIC_NAVER_CLIENT_SECRET: string | undefined;
     }
-  }
-  interface Window {
-    kakao: any;
   }
 }
 
