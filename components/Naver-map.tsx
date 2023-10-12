@@ -11,7 +11,7 @@ const KakaoMap = () => {
       naverOnLoad();
     };
   }, []);
-  return <div id="map" className="w-full h-[80vh]"></div>;
+  return <div id="map" className="w-full h-screen"></div>;
 };
 
 export default KakaoMap;

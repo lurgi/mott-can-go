@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Sans_KR, Roboto } from "next/font/google";
 
-import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
 
 const roboto = Roboto({
