@@ -1,14 +1,16 @@
 "use client";
 
-import { naverMpaScript, naverOnLoad } from "@/public/kakaomaps";
+import { naverMpaScript, naverOnLoad, applyPlaces } from "@/lib/navermaps";
 import { useEffect } from "react";
+
+const places = require("@/public/pet-place.json");
 
 const KakaoMap = () => {
   useEffect(() => {
-    const kakao_script = naverMpaScript();
-
-    kakao_script.onload = () => {
-      naverOnLoad();
+    const naverScript = naverMpaScript();
+    naverScript.onload = async () => {
+      const map = naverOnLoad();
+      applyPlaces(places, map);
     };
   }, []);
   return <div id="map" className="w-full h-screen"></div>;
