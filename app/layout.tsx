@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_KR, Roboto } from "next/font/google";
 
 import Header from "@/components/Header";
+import Script from "next/script";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kr">
+      <Script src="https://kit.fontawesome.com/d6116182ff.js"></Script>
       <body className={`${roboto.variable} ${noto_sans_kr.variable}`}>
         <Header />
         {children}

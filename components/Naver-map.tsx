@@ -9,7 +9,7 @@ const KakaoMap = () => {
   useEffect(() => {
     const naverScript = naverMpaScript();
     naverScript.onload = async () => {
-      const map = naverOnLoad();
+      const map = naverOnLoad(places);
       applyPlaces(places, map);
     };
   }, []);
