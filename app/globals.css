@@ -82,3 +82,12 @@
 .font-noto_sans_kr {
   font-family: var(--font-noto_sans_kr);
 }
+
+.place-link {
+  color: #a29bfe;
+  transition: color 0.2s;
+}
+.place-link:hover {
+  cursor: pointer;
+  color: #6c5ce7;
+}

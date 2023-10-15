@@ -31,7 +31,7 @@ export function naverOnLoad(places: PlaceType[]) {
 function getMinMaxLatLng(places: PlaceType[]) {
   let minLatLng: [number, number] = [Infinity, Infinity];
   let maxLatLng: [number, number] = [0, 0];
-  for (const { longitude, latitude, type } of places) {
+  for (const { longitude, latitude } of places) {
     if (minLatLng[1] > +longitude) minLatLng[1] = +longitude;
     if (minLatLng[0] > +latitude) minLatLng[0] = +latitude;
     if (maxLatLng[1] < +longitude) maxLatLng[1] = +longitude;
@@ -74,35 +74,60 @@ const iconElement = {
 };
 
 function makeMarker(place: PlaceType, map: naver.maps.Map) {
-  let isCafe = false;
-  for (const type of place.type) {
-    if (type === "카페") {
-      isCafe = true;
-      break;
-    }
-  }
+  let isCafe = isCafeInType(place.type);
+
   return new naver.maps.Marker({
     position: new naver.maps.LatLng(+place.latitude, +place.longitude),
     map,
     icon: {
       content: isCafe ? iconElement.cafeIcon : iconElement.othersIcon,
     },
+    title: place.name,
   });
 }
+
+function isCafeInType(types: string[]) {
+  for (const type of types) {
+    if (type === "카페") {
+      return true;
+    }
+  }
+  return false;
+}
+
+const makeContentString = (place: PlaceType) => {
+  return `
+    <div style="padding : 20px;" class="font-noto_sans_kr">
+      <p style="font-size: larger;">
+        ${place.name}
+      </p>
+      <p style="">
+        ${place.description}
+      </p>
+      <p class="place-link">
+        <a href="https://m.place.naver.com/restaurant/${place.naverId}/home" target="_blank">
+          자세히 보기 &rarr;
+        </a>
+      </p>
+    </div>
+  `;
+};
 
 function makeInfoWindow(
   place: PlaceType,
   map: naver.maps.Map,
   marker: naver.maps.Marker
 ) {
-  const contentString = `
-      <div>${place.name}</div>
-    `;
+  const contentString = makeContentString(place);
   const infoWindow = new naver.maps.InfoWindow({
     content: contentString,
+    borderColor: "#55efc4",
   });
   naver.maps.Event.addListener(marker, "click", () => {
     if (!infoWindow.getMap()) infoWindow.open(map, marker);
     else infoWindow.close();
+  });
+  naver.maps.Event.addListener(map, "click", () => {
+    if (infoWindow.getMap()) infoWindow.close();
   });
 }
