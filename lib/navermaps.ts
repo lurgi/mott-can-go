@@ -51,11 +51,38 @@ interface PlaceType {
   address: string;
 }
 
+let applyedPlaces: PlaceType[] = [];
+
+export function returnApplyedPlaces() {
+  return applyedPlaces;
+}
+
 export function applyPlaces(places: PlaceType[], map: naver.maps.Map) {
+  applyedPlaces = [];
   for (const place of places) {
-    const marker = makeMarker(place, map);
-    makeInfoWindow(place, map, marker);
+    if (isPlaceInBound({ place, map })) {
+      const marker = makeMarker(place, map);
+      makeInfoWindow(place, map, marker);
+      applyedPlaces.push(place);
+    }
   }
+}
+
+function isPlaceInBound({
+  place,
+  map,
+}: {
+  place: PlaceType;
+  map: naver.maps.Map;
+}) {
+  const { x: maxLon, y: maxLat } = map.getBounds().getMax();
+  const { x: minLon, y: minLat } = map.getBounds().getMin();
+  return (
+    +place.latitude > minLat &&
+    +place.latitude < maxLat &&
+    +place.longitude > minLon &&
+    +place.longitude < maxLon
+  );
 }
 
 const iconElement = {

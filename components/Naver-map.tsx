@@ -12,7 +12,7 @@ const NaverMap = () => {
       const map = naverOnLoad(places);
       applyPlaces(places, map);
       naver.maps.Event.addListener(map, "idle", function () {
-        console.log(map.getBounds());
+        applyPlaces(places, map);
       });
     };
   }, []);
