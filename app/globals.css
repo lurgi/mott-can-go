@@ -83,11 +83,36 @@
   font-family: var(--font-noto_sans_kr);
 }
 
-.place-link {
+.info_container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-noto_sans_kr);
+  padding: 20px;
+}
+.info_title {
+  font-size: x-large;
+  font-weight: 800;
+  padding-top: 8px;
+}
+.info_img {
+  max-height: 150px;
+  width: 260px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.info_description {
+  font-size: small;
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info_link {
   color: #a29bfe;
   transition: color 0.2s;
 }
-.place-link:hover {
+.info_link:hover {
   cursor: pointer;
   color: #6c5ce7;
 }

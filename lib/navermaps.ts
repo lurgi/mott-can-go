@@ -42,6 +42,7 @@ function getMinMaxLatLng(places: PlaceType[]) {
 }
 
 export interface PlaceType {
+  id: number;
   latitude: string;
   longitude: string;
   name: string;
@@ -49,6 +50,7 @@ export interface PlaceType {
   type: string[];
   naverId: string;
   address: string;
+  images: string[];
 }
 
 let applyedPlaces: PlaceType[] = [];
@@ -60,7 +62,7 @@ export function getApplyedPlaces() {
 export function applyPlaces(places: PlaceType[], map: naver.maps.Map) {
   applyedPlaces = [];
   for (const place of places) {
-    if (isPlaceInBound({ place, map })) {
+    if (isPlaceInBound({ place, map }) && applyedPlaces.length < 30) {
       const marker = makeMarker(place, map);
       makeInfoWindow(place, map, marker);
       applyedPlaces.push(place);
@@ -124,19 +126,30 @@ function isCafeInType(types: string[]) {
 
 const makeContentString = (place: PlaceType) => {
   return `
-    <div style="padding : 20px;" class="font-noto_sans_kr">
-      <p style="font-size: larger;">
+  <div class="info_container">
+    <div class="info_img_div">
+      <img class="info_img" src="${place.images[0]}"/>
+    </div>
+    <div class="info_detail font-noto_sans_kr">
+      <p class="info_title">
         ${place.name}
       </p>
-      <p style="">
-        ${place.description}
-      </p>
-      <p class="place-link">
-        <a href="https://m.place.naver.com/restaurant/${place.naverId}/home" target="_blank">
+      ${
+        place.description
+          ? `<p class="info_description">
+        ${place.description} 
+      </p>`
+          : ""
+      }
+      <p class="info_link">
+        <a href="https://m.place.naver.com/restaurant/${
+          place.naverId
+        }/home" target="_blank">
           자세히 보기 &rarr;
         </a>
       </p>
     </div>
+  </div>
   `;
 };
 
