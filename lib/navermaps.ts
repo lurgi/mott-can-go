@@ -41,7 +41,7 @@ function getMinMaxLatLng(places: PlaceType[]) {
   return { minLatLng, maxLatLng };
 }
 
-interface PlaceType {
+export interface PlaceType {
   latitude: string;
   longitude: string;
   name: string;
@@ -53,7 +53,7 @@ interface PlaceType {
 
 let applyedPlaces: PlaceType[] = [];
 
-export function returnApplyedPlaces() {
+export function getApplyedPlaces() {
   return applyedPlaces;
 }
 
