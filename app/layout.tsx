@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <Script src="https://kit.fontawesome.com/d6116182ff.js"></Script>
-      <body className={`${roboto.variable} ${noto_sans_kr.variable}`}>
+      <body className={`${roboto.variable} ${noto_sans_kr.variable} h-screen`}>
         <Header />
         {children}
       </body>

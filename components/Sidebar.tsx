@@ -1,12 +1,15 @@
 "use client";
 import applyedPlacesStore from "@/lib/zustand/applyedPlaceStore";
+import SideBarPlaceDetail from "./SideBarPlaceDetail";
 
 const SideBar = () => {
   const { applyedPlaces } = applyedPlacesStore((state) => state);
   return (
-    <div className="hidden sm:block w-[350px] md:w-[400px] pt-16">
+    <div className="hidden sm:block w-[350px] md:w-[400px] h-full overflow-scroll overflow-x-hidden p-2">
       {applyedPlaces?.map((place) => (
-        <div key={place.id}>{place.name}</div>
+        <div key={place.id}>
+          <SideBarPlaceDetail place={place} />
+        </div>
       ))}
     </div>
   );
