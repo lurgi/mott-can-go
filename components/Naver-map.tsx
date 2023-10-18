@@ -28,7 +28,7 @@ const NaverMap = () => {
       // });
     };
   }, [setApplyedPlace]);
-  return <div id="map" className="w-full h-full"></div>;
+  return <div id="map" className="w-full h-full z-0"></div>;
 };
 
 export default NaverMap;

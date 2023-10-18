@@ -1,3 +1,5 @@
+import { PlaceType } from "./types/naver-types";
+
 export function naverMpaScript() {
   const script = document.createElement("script");
   script.type = "text/javascript";
@@ -13,17 +15,18 @@ export function naverOnLoad(places: PlaceType[]) {
   }: { minLatLng: [number, number]; maxLatLng: [number, number] } =
     getMinMaxLatLng(places);
 
-  const seongsu = new naver.maps.LatLngBounds(
+  const seongsuBound = new naver.maps.LatLngBounds(
     new naver.maps.LatLng(...minLatLng),
     new naver.maps.LatLng(...maxLatLng)
   );
+
   const map = new naver.maps.Map("map", {
     center: new naver.maps.LatLng(
       (minLatLng[0] + maxLatLng[0]) / 2,
       (minLatLng[1] + maxLatLng[1]) / 2
     ),
     zoom: 15,
-    maxBounds: seongsu,
+    maxBounds: seongsuBound,
   });
   return map;
 }
@@ -39,18 +42,6 @@ function getMinMaxLatLng(places: PlaceType[]) {
   }
 
   return { minLatLng, maxLatLng };
-}
-
-export interface PlaceType {
-  id: number;
-  latitude: string;
-  longitude: string;
-  name: string;
-  description: string;
-  type: string[];
-  naverId: string;
-  address: string;
-  images: string[];
 }
 
 let applyedPlaces: PlaceType[] = [];

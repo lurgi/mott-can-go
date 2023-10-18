@@ -1,6 +1,6 @@
 "use client";
 import applyedPlacesStore from "@/lib/zustand/applyedPlaceStore";
-import SideBarPlaceDetail from "./SideBarPlaceDetail";
+import SideBarPlaceDetail from "./Sidebar/SideBarPlaceDetail";
 
 const SideBar = () => {
   const { applyedPlaces } = applyedPlacesStore((state) => state);
