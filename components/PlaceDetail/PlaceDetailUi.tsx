@@ -8,9 +8,9 @@ import {
 import PlaceDetailHeader from "./PlaceDetailHeader";
 import PlaceDetailContents from "./PlaceDetailContents";
 
-const SideBarPlaceDetail = ({ place }: { place: PlaceType }) => {
+const PlaceDetailUi = ({ place }: { place: PlaceType }) => {
   return (
-    <div>
+    <>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger className="px-2 w-[100%]">
@@ -21,8 +21,8 @@ const SideBarPlaceDetail = ({ place }: { place: PlaceType }) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </div>
+    </>
   );
 };
 
-export default SideBarPlaceDetail;
+export default PlaceDetailUi;

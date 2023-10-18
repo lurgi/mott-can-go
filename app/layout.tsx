@@ -4,7 +4,6 @@ import { Noto_Sans_KR, Roboto } from "next/font/google";
 
 import Header from "@/components/Header";
 import Script from "next/script";
-import SideBarTogle from "@/components/Sidebar/SideBarTogle";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -36,7 +35,6 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <SideBarTogle />
       </body>
     </html>
   );
