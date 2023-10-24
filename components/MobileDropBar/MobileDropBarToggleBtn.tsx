@@ -17,7 +17,7 @@ const MobileDropBarToggleBtn = ({
         "h-8 w-1/5 bg-white z-50 transition-all duration-300 flex justify-center items-center rounded-t-lg hover:text-cyan-600 text-slate-600 hover:cursor-pointer"
       }
     >
-      <div className="scale-150">
+      <div className="scale-150 py-2">
         {isOpen ? <IoIosArrowDown /> : <IoIosArrowUp />}
       </div>
     </div>
