@@ -9,7 +9,7 @@ const MobileDropBarToggle = () => {
   return (
     <div
       className={cn(
-        isOpen ? "h-1/2" : "h-8",
+        isOpen ? "h-3/5" : "h-8",
         "sm:hidden absolute bottom-0 w-full flex flex-col items-center transition-all"
       )}
     >

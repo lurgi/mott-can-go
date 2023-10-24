@@ -4,7 +4,7 @@ import SideBarTogle from "@/components/MobileDropBar/MobileDropBarToggle";
 
 export default function Home() {
   return (
-    <div className="flex h-full pt-16 relative">
+    <div className="flex h-full pt-16 relative overflow-y-hidden">
       <SideBar />
       <NaverMap />
       <SideBarTogle />
