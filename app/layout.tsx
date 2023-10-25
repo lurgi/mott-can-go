@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Sans_KR, Roboto } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import Header from "@/components/Header";
 import Script from "next/script";
@@ -28,14 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kr">
-      <Script src="https://kit.fontawesome.com/d6116182ff.js"></Script>
-      <body
-        className={`${roboto.variable} ${noto_sans_kr.variable} h-screen font-noto_sans_kr`}
-      >
-        <Header />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="kr">
+        <Script src="https://kit.fontawesome.com/d6116182ff.js"></Script>
+        <body
+          className={`${roboto.variable} ${noto_sans_kr.variable} h-screen font-noto_sans_kr`}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
