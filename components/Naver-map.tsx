@@ -22,10 +22,10 @@ const NaverMap = () => {
       applyPlaces(places, map);
       setApplyedPlace(getApplyedPlaces());
 
-      // naver.maps.Event.addListener(map, "idle", function () {
-      //   applyPlaces(places, map);
-      //   setApplyedPlace(getApplyedPlaces());
-      // });
+      naver.maps.Event.addListener(map, "idle", function () {
+        applyPlaces(places, map);
+        setApplyedPlace(getApplyedPlaces());
+      });
     };
   }, [setApplyedPlace]);
   return <div id="map" className="w-full h-full z-0"></div>;
