@@ -41,7 +41,7 @@ const UploadImage = ({
       <div className="flex items-center justify-center">
         {placeImages.length !== 0 ? (
           <Swiper
-            className="w-60 h-60 border my-2 select-none"
+            className="w-60 h-60 border my-2 select-none  rounded-lg"
             modules={[Navigation, Pagination]}
             spaceBetween={0}
             slidesPerView={1}
@@ -58,7 +58,7 @@ const UploadImage = ({
             ))}
           </Swiper>
         ) : (
-          <div className="font-semibold mt-2 mb-3 w-60 h-60 border rounded-lg flex justify-center items-center">
+          <div className="font-semibold mt-2 mb-2 w-60 h-60 border rounded-lg flex justify-center items-center">
             이미지 없음
           </div>
         )}

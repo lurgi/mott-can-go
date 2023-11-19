@@ -21,7 +21,7 @@ const UploadForm = ({
 }) => {
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 w-full">
         <FormField
           control={form.control}
           name="placeName"
@@ -48,7 +48,7 @@ const UploadForm = ({
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">등록하기</Button>
       </form>
     </Form>
   );
