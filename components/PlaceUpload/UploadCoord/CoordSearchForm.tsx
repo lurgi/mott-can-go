@@ -14,9 +14,10 @@ import { Button } from "../../ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Card, CardContent, CardHeader } from "../../ui/card";
+import { CardContent, CardHeader } from "../../ui/card";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
+import { PlaceType } from "@/app/place/upload/page";
 
 const formSchema = z.object({
   address: z.string().min(2, {
@@ -28,7 +29,7 @@ const SearchForm = ({
   setAddresses,
   setIsCoordLoading,
 }: {
-  setAddresses: Dispatch<SetStateAction<string[]>>;
+  setAddresses: Dispatch<SetStateAction<PlaceType[]>>;
   setIsCoordLoading: Dispatch<SetStateAction<boolean>>;
 }) => {
   const form = useForm<z.infer<typeof formSchema>>({

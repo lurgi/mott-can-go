@@ -36,12 +36,12 @@ const UploadImage = ({
     }
   }, [imageInput, setPlaceImages]);
   return (
-    <form>
+    <form className="w-80">
       <span className="font-semibold">사진</span>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-between">
         {placeImages.length !== 0 ? (
           <Swiper
-            className="w-60 h-60 border my-2 select-none  rounded-lg"
+            className="w-60 h-60 border my-2 select-none rounded-lg"
             modules={[Navigation, Pagination]}
             spaceBetween={0}
             slidesPerView={1}

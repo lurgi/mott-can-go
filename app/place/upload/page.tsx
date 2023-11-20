@@ -8,7 +8,8 @@ import { useState } from "react";
 
 import UploadForm from "@/components/PlaceUpload/UploadForm";
 import UploadImage from "@/components/PlaceUpload/UploadImage";
-import UploadCoord from "@/components/PlaceUpload/UploadCoordAndAddress";
+import UploadCoord from "@/components/PlaceUpload/UploadCoord";
+import { type } from "os";
 
 const formSchema = z.object({
   placeName: z
@@ -25,6 +26,16 @@ const formSchema = z.object({
     .max(50, { message: "설명은 최대 50자 까지 적을 수 있습니다" }),
 });
 
+interface IPlace {
+  englishAddress?: string;
+  jibunAddress?: string;
+  roadAddress?: string;
+  x?: string;
+  y?: string;
+}
+
+export type PlaceType = undefined | IPlace;
+
 const PlaceAddPage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,25 +46,33 @@ const PlaceAddPage = () => {
   });
 
   const [placeImages, setPlaceImages] = useState<any[]>([]);
-  const [placeCoord, setPlaceCoord] = useState<number[]>([]);
+  const [placeInfo, setPlaceInfo] = useState<PlaceType>();
 
   const onSubmit = ({ description, placeName }: z.infer<typeof formSchema>) => {
-    // submit callback
-    if (!placeImages) {
+    if (placeImages.length === 0) {
       // Error Handling
       return;
     }
-    axios.post("/api/uploadPlace", { description, placeName });
+    if (!placeInfo) {
+      // Errror Handleing;
+      return;
+    }
+    console.log(placeInfo, placeImages);
+    axios.post("/api/upload_place", {
+      description,
+      placeName,
+      placeImages,
+    });
   };
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen">
-      <div className="w-80">
+      <div className="mt-8 w-[50%] min-w-[20rem]">
         <UploadImage
           placeImages={placeImages}
           setPlaceImages={setPlaceImages}
         />
-        <UploadCoord placeCoord={placeCoord} setPlaceCoord={setPlaceCoord} />
+        <UploadCoord placeInfo={placeInfo} setPlaceInfo={setPlaceInfo} />
         <UploadForm form={form} onSubmit={onSubmit} />
       </div>
     </div>

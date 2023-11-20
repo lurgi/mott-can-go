@@ -2,17 +2,20 @@
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { Button } from "../../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
+import { CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { Dispatch, SetStateAction } from "react";
+import { PlaceType } from "@/app/place/upload/page";
 
 const SearchResults = ({
   isCoordLoading,
   addresses,
-  setdAddressSelected,
+  setPlaceInfo,
+  clickModal,
 }: {
   isCoordLoading: boolean;
-  addresses: string[];
-  setdAddressSelected: Dispatch<SetStateAction<string>>;
+  addresses: PlaceType[];
+  setPlaceInfo: Dispatch<SetStateAction<PlaceType>>;
+  clickModal: () => void;
 }) => {
   return (
     <div className="h-[360px]">
@@ -30,10 +33,13 @@ const SearchResults = ({
           addresses?.map((address, index) => (
             <Button
               key={index}
-              className="w-full justify-start text-sm"
+              className="w-full justify-start text-sm px-2"
               variant={"outline"}
-              onClick={() => setdAddressSelected(address)}>
-              {address.roadAddress}
+              onClick={() => {
+                setPlaceInfo(address);
+                clickModal();
+              }}>
+              {address?.roadAddress}
             </Button>
           ))
         )}
