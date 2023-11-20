@@ -29,14 +29,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="kr">
-        <Script src="https://kit.fontawesome.com/d6116182ff.js"></Script>
-        <body
-          className={`${roboto.variable} ${noto_sans_kr.variable} h-screen font-noto_sans_kr`}>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    // <ClerkProvider>
+    <html lang="kr">
+      <Script src="https://kit.fontawesome.com/d6116182ff.js"></Script>
+      <body
+        className={`${roboto.variable} ${noto_sans_kr.variable} h-screen font-noto_sans_kr`}>
+        {children}
+      </body>
+    </html>
+    // </ClerkProvider>
   );
 }

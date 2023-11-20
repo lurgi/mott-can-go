@@ -9,7 +9,6 @@ import { useState } from "react";
 import UploadForm from "@/components/PlaceUpload/UploadForm";
 import UploadImage from "@/components/PlaceUpload/UploadImage";
 import UploadCoord from "@/components/PlaceUpload/UploadCoord";
-import { type } from "os";
 
 const formSchema = z.object({
   placeName: z
@@ -48,20 +47,29 @@ const PlaceAddPage = () => {
   const [placeImages, setPlaceImages] = useState<any[]>([]);
   const [placeInfo, setPlaceInfo] = useState<PlaceType>();
 
-  const onSubmit = ({ description, placeName }: z.infer<typeof formSchema>) => {
+  const onSubmit = async ({
+    description,
+    placeName,
+  }: z.infer<typeof formSchema>) => {
     if (placeImages.length === 0) {
       // Error Handling
       return;
     }
     if (!placeInfo) {
-      // Errror Handleing;
+      // Errror Handling;
       return;
     }
-    console.log(placeInfo, placeImages);
-    axios.post("/api/upload_place", {
+    const { roadAddress, englishAddress, x, y } = placeInfo;
+    // image 업로드는 ClodFlare 정기 결제 해야해서 패스...
+    await axios.post("/api/upload_place", {
       description,
       placeName,
-      placeImages,
+      placeInfo: {
+        roadAddress,
+        englishAddress,
+        x,
+        y,
+      },
     });
   };
 

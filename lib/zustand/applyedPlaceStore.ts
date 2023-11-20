@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { PlaceType } from "../navermaps";
+import { PlaceType } from "../types/naver-types";
 
 interface ApplyedPlacesStore {
   applyedPlaces: PlaceType[];
