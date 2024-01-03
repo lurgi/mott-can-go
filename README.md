@@ -1,4 +1,7 @@
 [홈페이지](https://master--illustrious-cascaron-b1553b.netlify.app/)
+# MOTT CAN GO!
+모트(댕댕이)도 갈 수 있는 장소를 소개합니다!
+성수동 근처의 Pet Friendly Place를 소개하는 웹페이지 입니다.
 
 ## 회고
 
